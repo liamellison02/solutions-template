@@ -125,15 +125,15 @@ def update_readme(solutions: list[dict]) -> None:
     lang_counts = Counter(s["ext"] for s in solutions)
     lang_display = {".py": "Python", ".cpp": "C++"}
 
-    rows = [f"| Total solutions | {total} |"]
+    rows = [f"| total solutions | {total} |"]
     for key in ["lc", "cf", "csc2720"]:
         if platform_counts.get(key):
-            rows.append(f"| {PLATFORM_DISPLAY[key]} | {platform_counts[key]} |")
+            rows.append(f"| {PLATFORM_DISPLAY[key].lower()} | {platform_counts[key]} |")
     for ext in [".py", ".cpp"]:
         if lang_counts.get(ext):
-            rows.append(f"| {lang_display[ext]} | {lang_counts[ext]} |")
+            rows.append(f"| {lang_display[ext].lower()} | {lang_counts[ext]} |")
 
-    table = "| | Count |\n|---|---|\n" + "\n".join(rows) + "\n"
+    table = "| | count |\n|---|---|\n" + "\n".join(rows) + "\n"
 
     content = README_PATH.read_text()
     updated = re.sub(

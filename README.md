@@ -1,33 +1,35 @@
-# DSA solutions
+# dsa solutions
 
-DSA solutions repo template based on my (personal solutions repository)[https://github.com/liamellison02/dsa-solutions]. 
+DSA solutions repo template based on my [personal solutions repository](https://github.com/liamellison02/dsa-solutions).
 
-The goal is to get (or git) credit for your DSA grind while making your practice sessions more organized, and hopefully gamify things a bit in the process. This repo structure groups solutions by algorithmic/solution patterns in order to build stronger active recall habts and reinforce each problem-solving pattern when working through new problems.
+The goal is to get (_or git_ :smirk:) credit for your DSA grind while making your practice sessions more organized, and hopefully gamify things a bit in the process.
 
-## Getting Started
+This repo structure groups solutions by algorithmic/solution patterns in order to build stronger **active recall** and reinforce each problem-solving pattern when working through new problems.
 
-1. Fork or clone this repository
-2. Create your first solution:
+## get started
+
+1. fork or clone this repository
+2. create your first solution:
    ```bash
    ./scripts/new lc 1 two-sum py arrays/hashing hashmap,complement
    ```
-3. Open the generated file, paste the LeetCode method signature, and solve
-4. Fill in the `complexity:` and `notes:` fields in the metadata header
-5. Track your progress with `./scripts/stats`
+3. open the generated file, paste the leetcode method signature, and solve
+4. fill in the `complexity:` and `notes:` fields in the metadata header
+5. track your progress with `./scripts/stats`
 
-## Stats
+## stats
 
 <!-- stats-start -->
-| | Count |
+| | count |
 |---|---|
-| Total solutions | 0 |
+| total solutions | 0 |
 <!-- stats-end -->
 
 Run `./scripts/stats` for a full breakdown by difficulty, pattern, and tags.
 
-## Pattern Directory
+## pattern directory structure
 
-Solutions are organized by algorithm pattern in `problems/`:
+solutions are organized by algorithm pattern in `problems/`:
 
 ```
 problems/
@@ -79,27 +81,27 @@ problems/
     └── traversal/        # iterative traversal
 ```
 
-## Usage
+## usage
 
-### Create a new solution
+### create a new solution
 
 ```bash
 ./scripts/new <platform> <id> <slug> <lang> <pattern> [tags]
 
-# LeetCode
+# leetcode
 ./scripts/new lc 125 valid-palindrome cpp arrays/two_pointers palindrome,string
 ./scripts/new lc 3 longest-substring-without-repeating py sliding_window hashset
 
-# Codeforces
+# codeforces
 ./scripts/new cf 4A watermelon cpp math divisibility
 
-# CSC 2720
+# CSC2720 (Data Structures)
 ./scripts/new csc2720 hw3 graph-traversal py graphs/traversal bfs,dfs
 ```
 
-### Solution metadata format
+### solution metadata format
 
-Every solution includes a metadata header:
+each solution includes a header with important metadata:
 
 ```python
 """
@@ -113,42 +115,42 @@ tags: hashmap,complement
 complexity:
 - time = O(n)
 - space = O(n)
-notes: use hashmap to store complement; for each num check if target - num already seen
+notes: use hashmap to store complement; for each num check if target - num already seen/in hashmap
 """
 ```
 
-### View stats
+### view stats
 
 ```bash
 ./scripts/stats
 ```
 
-### Regenerate track READMEs
+### regenerate track READMEs
 
 ```bash
 python3 scripts/gen_tracks.py
 ```
 
-## Tracks
+## tracks
 
-Solutions can also be browsed by platform in `tracks/`:
+solutions can also be browsed by platform in `tracks/`:
 
 - [LeetCode](tracks/leetcode/)
 - [Codeforces](tracks/codeforces/)
 - [CSC 2720](tracks/csc_2720/)
 
-## Tags
+## tags
 
-Tags describe the techniques, data structures, and problem characteristics used in a solution. They are comma-separated in the `tags:` metadata field.
+tags describe the techniques, data structures, and problem characteristics used in a solution. they are comma-separated in the `tags:` metadata field.
 
-**Formatting rules:**
-- Lowercase, hyphen-separated (e.g. `two-pointers`, not `two_pointers`)
-- No spaces around commas: `tags: greedy,sorting,hashing`
-- Use singular form: `array` not `arrays`, `string` not `strings`
+**formatting rules:**
+- lowercase, hyphen-separated (e.g. `two-pointers`, not `two_pointers`)
+- no spaces around commas: `tags: greedy,sorting,hashing`
+- use singular form: `array` not `arrays`, `string` not `strings`
 
-**Common tags by category:**
+**common tags by category:**
 
-| Category | Tags |
+| category | tags |
 |----------|------|
 | Data structures | `array`, `linked-list`, `tree`, `binary-tree`, `bst`, `stack`, `queue`, `heap`, `matrix`, `grid`, `hashing`, `hashmap`, `hashset` |
 | Traversal / search | `bfs`, `dfs`, `binary-search`, `two-pointers`, `sliding-window`, `recursion`, `iterative` |
@@ -161,3 +163,4 @@ Tags describe the techniques, data structures, and problem characteristics used 
 | Stack / queue variants | `monotonic-stack`, `monotonic-queue`, `minheap`, `priority-queue` |
 | Problem characteristics | `simulation`, `design`, `backtracking`, `precompute`, `prefix-sum`, `counting`, `frequency`, `complement` |
 | Bit manipulation | `bit`, `bitmask`, `bit-manipulation` |
+
