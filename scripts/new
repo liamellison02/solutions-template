@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -lt 5 ]; then
+  echo "Usage:"
+  echo "  ./scripts/new <platform> <id> <slug> <lang> <pattern> [tags]"
+  echo ""
+  echo "Platforms: lc, cf, csc2720"
+  echo ""
+  echo "Examples:"
+  echo "  ./scripts/new lc 125 valid-palindrome cpp arrays/two_pointers palindrome,string"
+  echo "  ./scripts/new lc 3 longest-substring-without-repeating py sliding_window hashset"
+  echo "  ./scripts/new cf 4A watermelon cpp math divisibility"
+  echo "  ./scripts/new csc2720 hw3 graph-traversal py graphs/traversal bfs,dfs"
+  exit 1
+fi
+
+platform="$1" # lc | cf | csc2720
+id="$2"
+slug="$3"     # kebab-case
+lang="$4"     # cpp | py
+pattern="$5"  # arrays/two_pointers
+tags="${6:-}" # optional, comma-separated
+
+case "$lang" in
+cpp) ext="cpp" ;;
+py) ext="py" ;;
+*)
+  echo "Error: language must be 'cpp' or 'py'"
+  exit 1
+  ;;
+esac
+
+dir="problems/$pattern"
+file="$dir/${platform}-${id}-${slug}.${ext}"
+
+# template based on platform
+tmpl="templates/${platform}.${ext}"
+if [ ! -f "$tmpl" ]; then
+  tmpl="templates/solution.${ext}"
+fi
+
+mkdir -p "$dir"
+
+if [ -f "$file" ]; then
+  echo "Error: file already exists:"
+  echo "  $file"
+  exit 1
+fi
+
+cp "$tmpl" "$file"
+
+# sed (GNU/BSD-compatible)
+
+if sed --version >/dev/null 2>&1; then
+  # GNU sed (Linux, WSL)
+  SED_INPLACE=(-i)
+else
+  # BSD sed (macOS)
+  SED_INPLACE=(-i '')
+fi
+
+sed "${SED_INPLACE[@]}" "s|platform:|platform: $platform|" "$file"
+sed "${SED_INPLACE[@]}" "s|id:|id: $id|" "$file"
+sed "${SED_INPLACE[@]}" "s|name:|name: ${slug//-/ }|" "$file"
+sed "${SED_INPLACE[@]}" "s|pattern:|pattern: $pattern|" "$file"
+sed "${SED_INPLACE[@]}" "s|tags:|tags: $tags|" "$file"
+
+# append row to track README
+track_readme=""
+case "$platform" in
+  lc)      track_readme="tracks/leetcode/README.md" ;;
+  cf)      track_readme="tracks/codeforces/README.md" ;;
+  csc2720) track_readme="tracks/csc_2720/README.md" ;;
+esac
+
+if [ -n "$track_readme" ] && [ -f "$track_readme" ]; then
+  display_name=$(echo "${slug//-/ }" | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+  link="../../${file}"
+  echo "| ${id} | [${display_name}](${link}) | ${pattern} | ${tags} |" >> "$track_readme"
+
+  echo "Track:"
+  echo "  $track_readme"
+fi
+
+# update README.md stats
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+"$script_dir/stats" --update-readme
+
+echo "Created:"
+echo "  $file"
+echo "Template:"
+echo "  $tmpl"

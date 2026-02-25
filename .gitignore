@@ -1,0 +1,23 @@
+.git/
+.venv/
+
+interviews/
+*/submissions/
+scratch/
+
+*.o
+*.txt
+
+.DS_Store
+.vscode/
+
+*/__pycache__/
+*/.pytest_cache/
+*/.mypy_cache/
+*/.coverage
+
+# build artifacts
+*.out
+*.exe
+__pycache__/
+*.pyc
