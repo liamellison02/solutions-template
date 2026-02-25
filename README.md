@@ -1,6 +1,8 @@
-# DSA Solutions
+# DSA solutions
 
-Data Structures and Algorithms solutions repository. Organize your Python and C++ solutions to problems from LeetCode, Codeforces, and DSA coursework (CSC 2720).
+DSA solutions repo template based on my (personal solutions repository)[https://github.com/liamellison02/dsa-solutions]. 
+
+The goal is to get (or git) credit for your DSA grind while making your practice sessions more organized, and hopefully gamify things a bit in the process. This repo structure groups solutions by algorithmic/solution patterns in order to build stronger active recall habts and reinforce each problem-solving pattern when working through new problems.
 
 ## Getting Started
 
